@@ -1,5 +1,6 @@
 "use client";
 
+import SiteHeader from "@/components/SiteHeader";
 import ApplyToTask from "@/components/ApplyToTask";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -82,35 +83,12 @@ export default function CatalogPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5">
-          <Link href="/" className="text-xl font-bold">
-            Бизнесмен{" "}
-            <span className="text-blue-600">Ивентс</span>
-          </Link>
-
-          <nav className="flex items-center gap-5 text-sm font-medium">
-            <Link href="/" className="hover:text-blue-700">
-              Создать задачу
-            </Link>
-
-            <Link
-              href="/catalog"
-              aria-current="page"
-              className="text-blue-700"
-            >
-              Каталог
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader active="catalog" />
 
       <main className="mx-auto max-w-7xl px-6 py-10">
-        <div className="flex flex-wrap items-start justify-between gap-5">
+        <div className="catalog-heading flex flex-wrap items-start justify-between gap-5">
           <div>
-            <h1 className="text-3xl font-bold">
-              Задачи для студенческих команд
-            </h1>
+            <span className="eyebrow"><i /> КАТАЛОГ ВОЗМОЖНОСТЕЙ</span><h1 className="catalog-title">Найдите событие.<br /><em>Станьте его частью.</em></h1>
 
             <p className="mt-3 max-w-2xl leading-7 text-slate-600">
               Изучите мероприятия, условия и обязанности команды.
@@ -172,7 +150,7 @@ export default function CatalogPage() {
               {tasks.map((task) => (
                 <article
                   key={task.id}
-                  className="min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                  className="event-task min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">

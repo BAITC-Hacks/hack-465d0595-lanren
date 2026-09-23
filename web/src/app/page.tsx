@@ -1,5 +1,6 @@
 "use client";
 
+import SiteHeader from "@/components/SiteHeader";
 import PublishTask from "@/components/PublishTask";
 import ReadinessScore from "@/components/ReadinessScore";
 import { useEffect, useState } from "react";
@@ -256,27 +257,27 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-5">
-          <div className="text-xl font-bold">
-            Бизнесмен <span className="text-blue-600">Ивентс</span>
-          </div>
-
-          <span className="text-sm text-slate-600">
-            Кабинет бизнеса
-          </span>
-        </div>
-      </header>
+      <SiteHeader active="create" />
 
       <main className="mx-auto max-w-7xl px-6 py-10">
-        <h1 className="text-3xl font-bold">
-          Подготовьте задачу для студенческой команды
-        </h1>
-
-        <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-          Опишите мероприятие, уточните детали и проверьте
-          подготовленную карточку.
-        </p>
+        <section className="event-hero">
+          <div className="hero-copy">
+            <span className="eyebrow"><i /> ИДЕИ БИЗНЕСА. ЭНЕРГИЯ СТУДЕНТОВ.</span>
+            <h1>Большие события<br />начинаются <em>с идеи.</em></h1>
+            <p>Вы рассказываете о событии. ИИ помогает уточнить детали.<br className="desktop-break" /> А студенческие команды — воплотить задуманное.</p>
+            <div className="hero-tags"><span>✦ AI-помощник</span><span>Прозрачные условия</span><span>Открытый выбор команд</span></div>
+          </div>
+          <div className="event-art" aria-hidden="true">
+            <div className="art-orbit" /><span className="art-star">✳</span>
+            <div className="art-ticket"><span>BUSINESS × STUDENTS</span><strong>Ваша идея.<br />Общее дело.</strong><div className="ticket-line" /><small>ОТ ПЕРВОГО БРИФА ДО КОМАНДЫ</small></div>
+            <span className="art-note">↗ Создавайте вместе</span>
+          </div>
+        </section>
+        <ol className="event-steps" aria-label="Этапы подготовки">
+          <li className={step === "draft" ? "current" : "complete"}><b>01</b><span>Опишите идею<small>Начните с главного</small></span></li>
+          <li className={step === "questions" && !card ? "current" : ""}><b>02</b><span>Уточните детали<small>ИИ задаст нужные вопросы</small></span></li>
+          <li className={card ? "current" : ""}><b>03</b><span>Подготовьте карточку<small>Оцените и опубликуйте</small></span></li>
+        </ol>
 
         {error && (
           <div

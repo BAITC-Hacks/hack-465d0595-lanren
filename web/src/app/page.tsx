@@ -1,5 +1,6 @@
 "use client";
 
+import PublishTask from "@/components/PublishTask";
 import ReadinessScore from "@/components/ReadinessScore";
 import { useEffect, useState } from "react";
 import { z } from "zod";
@@ -196,7 +197,7 @@ export default function Home() {
     setError("");
     setIsImproving(true);
 
-    // Keep the exact input used to generate this version.
+    
     const source = currentSource;
 
     try {
@@ -524,6 +525,12 @@ export default function Home() {
                   <ReadinessScore
                     title={card.title}
                     description={card.description}
+                  />
+
+                  <PublishTask
+                    title={card.title}
+                    description={card.description}
+                    disabled={cardIsOutdated}
                   />
 
                   {card.missingInformation.length > 0 && (

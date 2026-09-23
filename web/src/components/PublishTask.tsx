@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { getSupabase } from "@/lib/supabase";
 
@@ -157,6 +158,15 @@ export default function PublishTask({
           Карточка сохранена в базе и опубликована.
         </p>
       )}
+
+      {published && (
+        <Link
+            href="/catalog"
+            className="mt-4 inline-block font-semibold text-blue-700 hover:underline"
+        >
+            Посмотреть в каталоге
+        </Link>
+        )}
 
       {published && published.source !== currentSource && (
         <p className="mt-3 text-sm text-amber-800">

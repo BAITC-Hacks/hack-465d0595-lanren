@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sana Events — задачи для студенческих команд",
+  title: "Businessman Events — задачи для студенческих команд",
   description:
     "Превратите идею мероприятия в понятную задачу и найдите студенческую команду.",
 };

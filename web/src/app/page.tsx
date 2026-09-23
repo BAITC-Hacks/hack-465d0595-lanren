@@ -125,6 +125,29 @@ export default function Home() {
     card && cardSource !== currentSource
   );
 
+  function handleNewTask() {
+    if (busy) return;
+    if ((draft.trim() || hasQuestions || card) && !window.confirm(
+      "Начать новую задачу? Текущий черновик и ответы будут очищены. Опубликованные задачи останутся в каталоге."
+    )) return;
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      setError("Не удалось очистить сохранённый черновик. Проверьте доступ к хранилищу браузера.");
+      return;
+    }
+    setDraft("");
+    setStep("draft");
+    setQuestions([]);
+    setAnswers([]);
+    setHasQuestions(false);
+    setCard(null);
+    setCardSource("");
+    setError("");
+    setStorageError("");
+    window.requestAnimationFrame(() => document.getElementById("draft")?.focus());
+  }
+
   async function handleClarify() {
     if (busy) return;
 
@@ -273,10 +296,16 @@ export default function Home() {
             <span className="art-note">↗ Создавайте вместе</span>
           </div>
         </section>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-slate-500">Черновик сохраняется автоматически. Для другого события создайте новую задачу.</p>
+          <button type="button" onClick={handleNewTask} disabled={busy} className={secondaryButton}>
+            + Новая задача
+          </button>
+        </div>
         <ol className="event-steps" aria-label="Этапы подготовки">
           <li className={step === "draft" ? "current" : "complete"}><b>01</b><span>Опишите идею<small>Начните с главного</small></span></li>
           <li className={step === "questions" && !card ? "current" : ""}><b>02</b><span>Уточните детали<small>ИИ задаст нужные вопросы</small></span></li>
-          <li className={card ? "current" : ""}><b>03</b><span>Подготовьте карточку<small>Оцените и опубликуйте</small></span></li>
+          <li className={step === "questions" && card ? "current" : ""}><b>03</b><span>Подготовьте карточку<small>Оцените и опубликуйте</small></span></li>
         </ol>
 
         {error && (
